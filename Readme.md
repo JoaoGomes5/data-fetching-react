@@ -7,7 +7,7 @@
 
 ## 💻 Project
 
-🚧 A simple project to improve the fetching on React 🚀
+🚧 A simple project to improve fetching on React 🚀
 
 ## 🔨 Features
 
