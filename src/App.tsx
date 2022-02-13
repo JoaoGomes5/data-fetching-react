@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react'
+import { useFetch } from './hooks/useFetch';
 
 type Repository = {
   full_name: string;
@@ -7,18 +7,16 @@ type Repository = {
 }
 
 function App() {
-  const [repositories, setRepositories] = useState<Repository[]>([]);
+  const {
+    data: repositories,
+    isFetching
+  } = useFetch<Repository[]>('users/JoaoGomes5/repos')
 
 
-  useEffect(() => {
-    axios.get('https://api.github.com/users/JoaoGomes5/repos')
-      .then(response => {
-        setRepositories(response.data)
-      })
-  }, [])
   return (
     <ul>
-      {repositories.map(repo => {
+      {isFetching && <p>Loading...</p>}
+      {repositories?.map(repo => {
         return (
           <li key={repo.full_name}>
             <strong>{repo.full_name}</strong>
